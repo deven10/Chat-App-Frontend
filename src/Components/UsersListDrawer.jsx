@@ -23,13 +23,14 @@ const UsersListDrawer = ({ user, isOpen, onClose }) => {
   const [usersList, setUsersList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
+  const userInfo = JSON.parse(localStorage.getItem("user"));
 
   const toast = useToast();
 
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${userInfo.token}`,
     },
   };
 

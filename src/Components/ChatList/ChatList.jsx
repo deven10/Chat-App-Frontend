@@ -13,13 +13,15 @@ const ChatList = ({ user, isUpdated }) => {
   const { setChats, selectedChat, chats, setSelectedChat } =
     useContext(ChatContext);
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const fetchChats = async () => {
       try {
         const config = {
           headers: {
             "Content-type": "application/json",
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${userInfo.token}`,
           },
         };
 
