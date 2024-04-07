@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.App {
+  height: 100vh;
+  width: 100%;
+  background: rgb(135, 191, 231);
+  background: linear-gradient(
+    180deg,
+    rgba(135, 191, 231, 1) 0%,
+    rgba(0, 142, 255, 1) 100%
+  );
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.281);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.loading-dots-wrapper {
+  background-color: green;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: #fff;
+  font-family: sans-serif;
+  background-color: red;
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 12px;
+  height: 20px;
+  width: 20px;
+}
