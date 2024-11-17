@@ -11,6 +11,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,15 +43,11 @@ const Login = () => {
       if (bool) {
         // user login logic
         const body = { email, password };
-        const result = await axios.post(
-          "http://localhost:5000/api/user",
-          body,
-          {
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
+        const result = await axios.post(`${BASE_URL}/api/user`, body, {
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
 
         console.log("user login result: ", result);
         if (result.status === 200) {

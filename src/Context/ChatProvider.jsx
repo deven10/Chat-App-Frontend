@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { BASE_URL } from "../config";
 
 export const ChatContext = createContext();
 
@@ -21,7 +22,7 @@ const ChatProvider = ({ children }) => {
   useEffect(() => {
     const getAllUsers = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/api/user/all-users`,
+        `${BASE_URL}/api/user/all-users`,
         config
       );
 

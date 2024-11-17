@@ -19,6 +19,7 @@ import { useContext, useMemo, useState } from "react";
 // import AsyncSelect from "react-select/async";
 import Select from "react-select";
 import { ChatContext } from "../../../Context/ChatProvider";
+import { BASE_URL } from "../../../config";
 
 const CreateGroupChatModal = () => {
   const toast = useToast();
@@ -28,41 +29,6 @@ const CreateGroupChatModal = () => {
     chatName: "",
     users: [],
   });
-
-  // const userInfo = JSON.parse(localStorage.getItem("user"));
-
-  // const config = {
-  //   headers: {
-  //     "Content-type": "application/json",
-  //     Authorization: `Bearer ${userInfo.token}`,
-  //   },
-  // };
-
-  // const handleSearch = async (search) => {
-  //   if (!search) {
-  //     return;
-  //   }
-
-  //   try {
-  //     const { data } = await axios.get(
-  //       `http://localhost:5000/api/user?search=${search}`,
-  //       config
-  //     );
-
-  //     const options = data.map((d) => ({
-  //       label: d.name,
-  //       value: d._id,
-  //     }));
-  //     return options;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return [];
-  //   }
-  // };
-
-  // const userOptions = (input) => {
-  //   return handleSearch(input);
-  // };
 
   const userOptions = useMemo(() => {
     return allUsers
@@ -105,7 +71,7 @@ const CreateGroupChatModal = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/chat/group`,
+        `${BASE_URL}/api/chat/group`,
         {
           chatName: groupChat.chatName,
           users: groupChat.users.map((u) => u.value),

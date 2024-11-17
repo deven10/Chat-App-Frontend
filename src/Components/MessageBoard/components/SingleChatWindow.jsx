@@ -18,8 +18,8 @@ import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import { getSenderFull } from "../../../utils/utilityFunctions";
 import ProfileModal from "../../ProfileModal";
 import LoadingDots from "../../../assets/loading-dots.json";
+import { BASE_URL } from "../../../config";
 
-const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 const SingleChatWindow = ({ setIsUpdated }) => {
@@ -38,7 +38,7 @@ const SingleChatWindow = ({ setIsUpdated }) => {
 
   // connecting to socket
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(BASE_URL);
     socket.emit("setup", userInfo);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
@@ -67,7 +67,7 @@ const SingleChatWindow = ({ setIsUpdated }) => {
         setPostingNewMessage(true);
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          `${BASE_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat._id,
@@ -101,7 +101,7 @@ const SingleChatWindow = ({ setIsUpdated }) => {
         try {
           setLoading(true);
           const { data } = await axios.get(
-            `http://localhost:5000/api/message/${selectedChat._id}`,
+            `${BASE_URL}/api/message/${selectedChat._id}`,
             config
           );
           setAllMessages(data ?? []);

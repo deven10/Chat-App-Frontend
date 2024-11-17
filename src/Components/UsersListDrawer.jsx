@@ -16,6 +16,7 @@ import axios from "axios";
 import LoadingSkeleton from "./LoadingSkeleton";
 import UserCard from "./UserCard";
 import { ChatContext } from "../Context/ChatProvider";
+import { BASE_URL } from "../config";
 
 const UsersListDrawer = ({ user, isOpen, onClose }) => {
   const { setSelectedChat, chats, setChats } = useContext(ChatContext);
@@ -50,7 +51,7 @@ const UsersListDrawer = ({ user, isOpen, onClose }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `${BASE_URL}/api/user?search=${search}`,
         config
       );
       console.log("users list: ", data);
@@ -76,7 +77,7 @@ const UsersListDrawer = ({ user, isOpen, onClose }) => {
       setLoadingChat(true);
 
       const { data } = await axios.post(
-        `http://localhost:5000/api/chat`,
+        `${BASE_URL}/api/chat`,
         { userId },
         config
       );

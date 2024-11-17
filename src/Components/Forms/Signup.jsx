@@ -10,6 +10,7 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
+import { BASE_URL } from "../../config";
 
 const Signup = ({ setTabIndex }) => {
   const [user, setUser] = useState({
@@ -93,15 +94,11 @@ const Signup = ({ setTabIndex }) => {
       if (bool && passwordMatching) {
         // register user logic
         const body = { name, email, password, picture };
-        const result = await axios.post(
-          "http://localhost:5000/api/user/register",
-          body,
-          {
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
+        const result = await axios.post(`${BASE_URL}/api/user/register`, body, {
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
 
         console.log("new user registered result: ", result);
         if (result.status === 201) {

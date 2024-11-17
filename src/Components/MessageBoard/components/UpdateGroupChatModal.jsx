@@ -20,6 +20,7 @@ import axios from "axios";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { ChatContext } from "../../../Context/ChatProvider";
 import Select from "react-select";
+import { BASE_URL } from "../../../config";
 
 const UpdateGroupChatModal = ({ setIsUpdated }) => {
   const toast = useToast();
@@ -78,7 +79,7 @@ const UpdateGroupChatModal = ({ setIsUpdated }) => {
     try {
       const groupMembers = groupChat.users.map((u) => u.value);
       const response = await axios.post(
-        `http://localhost:5000/api/chat/group/update`,
+        `${BASE_URL}/api/chat/group/update`,
         {
           chatId: selectedChat._id,
           chatName: groupChat.chatName,

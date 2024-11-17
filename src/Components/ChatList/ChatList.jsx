@@ -6,6 +6,7 @@ import LoadingSkeleton from "../LoadingSkeleton";
 import CreateGroupChatModal from "./components/CreateGroupChatModal";
 import { useNavigate } from "react-router-dom";
 import { getSender } from "../../utils/utilityFunctions";
+import { BASE_URL } from "../../config";
 
 const ChatList = ({ user, isUpdated }) => {
   const toast = useToast();
@@ -25,10 +26,7 @@ const ChatList = ({ user, isUpdated }) => {
           },
         };
 
-        const { data } = await axios.get(
-          "http://localhost:5000/api/chat",
-          config
-        );
+        const { data } = await axios.get(`${BASE_URL}/api/chat`, config);
 
         setChats(data);
         if (selectedChat) {
